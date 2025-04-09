@@ -1,5 +1,5 @@
 
-This e-commerce system is designed to manage inventory, customer orders, suppliers, and shipping operations. It provides a comprehensive solution for online retail businesses with a modern user interface and robust backend functionality.
+This e-commerce system is designed to manage inventory, customer orders, suppliers, and shipping operations. It provides a comprehensive solution for online retail businesses with a modern Category interface and robust backend functionality.
 
 
 ## Getting Started
@@ -14,27 +14,22 @@ This e-commerce system is designed to manage inventory, customer orders, supplie
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/
-   cd 
+   git clone https://github.com/kmJBuCa/backend-project.git
+   cd backend-project
    ```
 
 2. Install dependencies:
    ```bash
    composer install
    cp .env.example .env
-   npm install
    ```
 
 3. Set up the environment:
    ```bash
    php artisan key:generate
    php artisan migrate
-   php artisan db:seed
    sudo /opt/lampp/lampp restart
-   npm run build
-   npm audit fix
    php artisan serve
-   npm run dev
    ```
 
 ## API Reference
@@ -108,33 +103,7 @@ This e-commerce system is designed to manage inventory, customer orders, supplie
 </details>
 
 
-## Model and Factory Creation
 
-```bash
-php artisan make:model Category -m 
-php artisan make:model Supplier -m 
-php artisan make:model Product -m 
-php artisan make:model Employee -m
-php artisan make:model Shipper -m
-php artisan make:model Customer -m
-php artisan make:model OrderDetail -m
-php artisan make:model Order -m 
-```
-
-## API Controllers
-
-```bash
-php artisan install:api
-php artisan make:controller API/v2025/ProductController --api
-php artisan make:controller API/v2025/SupplierController --api
-php artisan make:controller API/v2025/CategoryController --api
-php artisan make:controller API/v2025/OrderDetailController --api
-php artisan make:controller API/v2025/OrderController --api
-php artisan make:controller API/v2025/CustomerController --api
-php artisan make:controller API/v2025/EmployeeController --api
-php artisan make:controller API/v2025/ShipperController --api
-```
-* http://www.eirsvi.xyz:8000/
 
 ## Database Schema
 
@@ -155,7 +124,7 @@ php artisan make:controller API/v2025/ShipperController --api
 | - category hasMany product   |
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Category; 
 for ($i = 1; $i <= 9; $i++) {
@@ -198,7 +167,7 @@ for ($i = 1; $i <= 9; $i++) {
 | - supplier hasMany Product   |
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Supplier;
 for ($i = 1; $i <= 9; $i++) {
@@ -258,30 +227,30 @@ for ($i = 1; $i <= 9; $i++) {
 | - Product belongs to Supplier|
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Product;
 for ($i = 1; $i <= 9; $i++) {
     Product::create([
         'product_name' => 'Product ' . $i,
-        'cost_price' => rand(50, 200) + (rand(0, 99) / 100), // Random cost between 50.00 and 200.99
-        'selling_price' => rand(100, 300) + (rand(0, 99) / 100), // Random selling price between 100.00 and 300.99
-        'quantity_in_stock' => rand(10, 100), // Random stock between 10 and 100
-        'minimum_stock_level' => rand(5, 20), // Random min stock between 5 and 20
-        'status' => $i % 2 == 0 ? 'active' : 'inactive', // Alternates between active and inactive
-        'image' => 'product' . $i . '.jpg', // Placeholder image filename
-        'barcode' => 'BAR' . str_pad($i, 10, '0', STR_PAD_LEFT), // e.g., BAR0000000001
+        'cost_price' => rand(50, 200) + (rand(0, 99) / 100), 
+        'selling_price' => rand(100, 300) + (rand(0, 99) / 100),
+        'quantity_in_stock' => rand(10, 100), 
+        'minimum_stock_level' => rand(5, 20), 
+        'status' => $i % 2 == 0 ? 'active' : 'inactive', 
+        'image' => 'product' . $i . '.jpg', 
+        'barcode' => 'BAR' . str_pad($i, 10, '0', STR_PAD_LEFT), 
         'description' => 'Description for Product ' . $i,
         'brand' => 'Brand ' . $i,
         'model' => 'Model ' . $i,
-        'color' => $i % 3 == 0 ? 'Red' : ($i % 3 == 1 ? 'Blue' : 'Green'), // Simple color rotation
-        'size' => $i % 2 == 0 ? 'Large' : 'Small', // Alternates sizes
-        'weight' => rand(1, 10) + (rand(0, 99) / 100), // Random weight between 1.00 and 10.99
-        'dimensions' => rand(10, 50) . 'x' . rand(10, 50) . 'x' . rand(10, 50), // e.g., 20x30x40
-        'warranty' => $i % 2 == 0 ? '1 year' : '6 months', // Alternates warranty
+        'color' => $i % 3 == 0 ? 'Red' : ($i % 3 == 1 ? 'Blue' : 'Green'), 
+        'size' => $i % 2 == 0 ? 'Large' : 'Small', 
+        'weight' => rand(1, 10) + (rand(0, 99) / 100), 
+        'dimensions' => rand(10, 50) . 'x' . rand(10, 50) . 'x' . rand(10, 50), 
+        'warranty' => $i % 2 == 0 ? '1 year' : '6 months', 
         'country_of_origin' => 'Country ' . $i,
-        'supplier_id' => rand(1, 9), // Assumes 9 suppliers exist
-        'category_id' => rand(1, 9)  // Assumes 9 categories exist
+        'supplier_id' => rand(1, 9), 
+        'category_id' => rand(1, 9)  
     ]);
 }
 
@@ -310,7 +279,7 @@ for ($i = 1; $i <= 9; $i++) {
 | updated_at                   | timestamp
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Employee;
 for ($i = 1; $i <= 9; $i++) {
@@ -319,12 +288,12 @@ for ($i = 1; $i <= 9; $i++) {
         'last_name' => 'Smith' . $i,
         'position' => 'Position ' . $i,
         'department' => 'Dept ' . $i,
-        'hire_date' => now()->subDays(rand(1, 365))->toDateString(), // Random date in the past year
+        'hire_date' => now()->subDays(rand(1, 365))->toDateString(), 
         'phone' => '555-010' . $i,
         'email' => 'employee' . $i . '@company.com',
         'address' => 'Address ' . $i,
-        'photo' => 'photo' . $i . '.jpg', // Placeholder for a photo filename
-        'gender' => $i % 2 == 0 ? 'Female' : 'Male' // Alternates between Male and Female
+        'photo' => 'photo' . $i . '.jpg', 
+        'gender' => $i % 2 == 0 ? 'Female' : 'Male' 
     ]);
 }
 ```
@@ -345,7 +314,7 @@ for ($i = 1; $i <= 9; $i++) {
 | updated_at                   | timestamp
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Shipper;
 for ($i = 1; $i <= 9; $i++) {
@@ -354,7 +323,7 @@ for ($i = 1; $i <= 9; $i++) {
         'contact_person' => 'Contact ' . $i,
         'phone' => '555-030' . $i,
         'address' => 'Address ' . $i,
-        'shipping_methods' => $i % 2 == 0 ? 'Ground, Air' : 'Ground', // Simple variation
+        'shipping_methods' => $i % 2 == 0 ? 'Ground, Air' : 'Ground', 
         'email' => 'shipper' . $i . '@shipping.com',
         'notes' => 'Notes for Shipper ' . $i
     ]);
@@ -387,7 +356,7 @@ for ($i = 1; $i <= 9; $i++) {
 | updated_at                   | timestamp
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Customer;
 for ($i = 1; $i <= 9; $i++) {
@@ -435,16 +404,16 @@ for ($i = 1; $i <= 9; $i++) {
 | updated_at                   | timestamp
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\Order;
 for ($i = 1; $i <= 9; $i++) {
     Order::create([
-        'order_date' => now()->subDays(rand(1, 30))->toDateString(), // Random date in the last 30 days
-        'total_amount' => rand(100, 1000) + (rand(0, 99) / 100), // Random amount between 100.00 and 1000.99
-        'customer_id' => rand(1, 9), // Assumes 9 customers exist
-        'employee_id' => rand(1, 9), // Assumes 9 employees exist
-        'shipper_id' => rand(1, 3)   // Assumes at least 3 shippers exist
+        'order_date' => now()->subDays(rand(1, 30))->toDateString(), 
+        'total_amount' => rand(100, 1000) + (rand(0, 99) / 100), 
+        'customer_id' => rand(1, 9), 
+        'employee_id' => rand(1, 9), 
+        'shipper_id' => rand(1, 3)   
     ]);
 }
 ```
@@ -463,28 +432,22 @@ for ($i = 1; $i <= 9; $i++) {
 | updated_at                   | timestamp
 +------------------------------+
 ```
-- generate
+### php artisan tinker
 ```
 use App\Models\OrderDetail;
 for ($i = 1; $i <= 9; $i++) {
-    $quantity = rand(1, 10); // Random quantity between 1 and 10
-    $price = rand(10, 100) + (rand(0, 99) / 100); // Random price between 10.00 and 100.99
+    $quantity = rand(1, 10); 
+    $price = rand(10, 100) + (rand(0, 99) / 100); 
     OrderDetail::create([
         'quantity' => $quantity,
         'price' => $price,
-        'subtotal' => $quantity * $price, // Calculated subtotal
-        'order_id' => rand(1, 9), // Assumes 9 orders exist
-        'product_id' => rand(1, 5) // Assumes at least 5 products exist
+        'subtotal' => $quantity * $price, 
+        'order_id' => rand(1, 9), 
+        'product_id' => rand(1, 5) 
     ]);
 }
 ```
 </details>
-
-
-
-
-<!-- <details>
-<summary><strong>Categories</strong></summary>
 
 
 </details> -->
@@ -530,10 +493,30 @@ for ($i = 1; $i <= 9; $i++) {
 - Show how many products were sold for each category
 - Show the total sales by category
 
-*** History 
+* Histories
 ```
-composer install
+
+php artisan make:model Category -m 
+php artisan make:model Supplier -m 
+php artisan make:model Product -m 
+php artisan make:model Employee -m
+php artisan make:model Shipper -m
+php artisan make:model Customer -m
+php artisan make:model OrderDetail -m
+php artisan make:model Order -m 
+
 php artisan install:api
+php artisan make:controller API/v2025/ProductController --api
+php artisan make:controller API/v2025/SupplierController --api
+php artisan make:controller API/v2025/CategoryController --api
+php artisan make:controller API/v2025/OrderDetailController --api
+php artisan make:controller API/v2025/OrderController --api
+php artisan make:controller API/v2025/CustomerController --api
+php artisan make:controller API/v2025/EmployeeController --api
+php artisan make:controller API/v2025/ShipperController --api
+
+
+composer install
 php artisan key:generate
 php artisan migrate
 php artisan serve
@@ -541,5 +524,11 @@ composer dump-autoload
 php artisan route:clear
 php artisan route:cache
 
+
+App\Models\Category::all()
+App\Models\Category::find(1)
+DB::table('categories')->where('id', 1)->first()
+App\Models\Category::with('products')->find(1)
+App\Models\Category::destroy(1)
 
 ```
