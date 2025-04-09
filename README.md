@@ -533,12 +533,18 @@ DB::table('categories')->where('id', 1)->first()
 App\Models\Category::with('products')->find(1)
 App\Models\Category::destroy(1)
 
+git config --global credential.helper store
+
+git push https://<username>@github.com/<user_or_org>/<repo>.git
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+cat ~/.ssh/id_ed25519.pub
+
+ https://github.com/settings/ssh/new → Paste it
+
+git push origin main
 
 
-git init
-git remote add origin https://github.com/kmJBuCa/backend-project.git
-git add .
-git commit -m "Add my backend project"
-git push -u origin main
 
 ```
