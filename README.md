@@ -493,9 +493,10 @@ for ($i = 1; $i <= 9; $i++) {
 - Show how many products were sold for each category
 - Show the total sales by category
 
+
+
 * Histories
 ```
-
 php artisan make:model Category -m 
 php artisan make:model Supplier -m 
 php artisan make:model Product -m 
@@ -530,5 +531,12 @@ App\Models\Category::find(1)
 DB::table('categories')->where('id', 1)->first()
 App\Models\Category::with('products')->find(1)
 App\Models\Category::destroy(1)
+
+
+git init
+git remote add origin https://github.com/kmJBuCa/backend-project.git
+git add .
+git commit -m "Add my backend project"
+git push -u origin main
 
 ```
