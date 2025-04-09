@@ -450,7 +450,8 @@ for ($i = 1; $i <= 9; $i++) {
 </details>
 
 
-</details> -->
+</details> 
+
 ## SQL Queries
 
 1. Select customer name together with each order the customer made
@@ -531,6 +532,7 @@ App\Models\Category::find(1)
 DB::table('categories')->where('id', 1)->first()
 App\Models\Category::with('products')->find(1)
 App\Models\Category::destroy(1)
+
 
 
 git init

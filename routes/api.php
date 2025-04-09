@@ -25,5 +25,3 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('order-details', OrderDetailController::class);
     Route::apiResource('suppliers', SupplierController::class);
 });
-
-// my localhost http://www.eirsvi.xyz:8000/api/v1/
